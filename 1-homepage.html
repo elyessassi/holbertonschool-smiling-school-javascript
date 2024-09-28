@@ -34,6 +34,29 @@
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
       crossorigin="anonymous"
     ></script>
+    <script>
+      $(document).ready(function(){
+        $("div.quoteSection").css("display","none")
+        $.ajax({
+          method:"GET",
+          url:"https://smileschool-api.hbtn.info/quotes",
+          dataType:"json",
+          success:function(data){
+            $(".loader").hide()
+            $.each(data, function(key,value){
+              $(`img.img${key + 1}`).attr("src", `${value["pic_url"]}`)
+              $(`p.para${key + 1}`).text(`${value["text"]}`)
+              $(`h4.name${key + 1}`).text(`${value["name"]}`)
+              $(`span.title${key + 1}`).text(`${value["title"]}`)
+            })
+            $("div.quoteSection").css("display","block")
+          }})
+            
+      })
+
+      
+
+    </script>
 
     <link
       rel="stylesheet"
@@ -136,8 +159,10 @@
       </div>
     </header>
     <main class="main">
+      <!--quote section-->
       <section class="quotes section d-flex align-items-center">
-        <div class="container">
+        <div class="loader ml-auto mr-auto "></div><br>
+        <div class="container quoteSection">
           <div
             id="carouselExampleControls"
             class="carousel slide"
@@ -148,64 +173,38 @@
                 <div class="row mx-auto align-items-center">
                   <div class="col-12 col-sm-2 col-lg-2 offset-lg-1 text-center">
                     <img
-                      src="images/profile_5.jpg"
-                      class="d-block align-self-center"
+                      src="..."
+                      class="d-block align-self-center img1"
                       alt="Carousel Pic 1"
                     />
                   </div>
                   <div class="col-12 col-sm-7 offset-sm-2 col-lg-9 offset-lg-0">
                     <div class="quote-text">
-                      <p class="text-white">
-                        « Those tutorials are concise and go straight to the
-                        point. I can’t think of a better place to learn smiling.
-                        And it’s so fun!
+                      <p class="text-white para1">
+                        <!--the paragraph1 is added here-->
                       </p>
-                      <h4 class="text-white font-weight-bold">Person Name</h4>
-                      <span class="text-white">weather presenter</span>
+                      <h4 class="text-white font-weight-bold name1"><!--name1 is added here--></h4>
+                      <span class="text-white title1"><!--title1 is added here--></span>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="row mx-auto align-items-center">
+                <div class="row mx-auto align-items-center ">
                   <div class="col-12 col-sm-2 col-lg-2 offset-lg-1 text-center">
                     <img
-                      src="images/profile_5.jpg"
-                      class="d-block align-self-center"
-                      alt="Carousel Pic 1"
+                      src="..."
+                      class="d-block align-self-center img2"
+                      alt="Carousel Pic 2"
                     />
                   </div>
                   <div class="col-12 col-sm-7 offset-sm-2 col-lg-9 offset-lg-0">
                     <div class="quote-text">
-                      <p class="text-white">
-                        « Those tutorials are concise and go straight to the
-                        point. I can’t think of a better place to learn smiling.
-                        And it’s so fun!
+                      <p class="text-white para2">
+                        <!--the paragraph2 is added here-->
                       </p>
-                      <h4 class="text-white font-weight-bold">Person Name</h4>
-                      <span class="text-white">weather presenter</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row mx-auto align-items-center">
-                  <div class="col-12 col-sm-2 col-lg-2 offset-lg-1 text-center">
-                    <img
-                      src="images/profile_5.jpg"
-                      class="d-block align-self-center"
-                      alt="Carousel Pic 1"
-                    />
-                  </div>
-                  <div class="col-12 col-sm-7 offset-sm-2 col-lg-9 offset-lg-0">
-                    <div class="quote-text">
-                      <p class="text-white">
-                        « Those tutorials are concise and go straight to the
-                        point. I can’t think of a better place to learn smiling.
-                        And it’s so fun!
-                      </p>
-                      <h4 class="text-white font-weight-bold">Person Name</h4>
-                      <span class="text-white">weather presenter</span>
+                      <h4 class="text-white font-weight-bold name2"><!--name2 is added here--></h4>
+                      <span class="text-white title2"><!--title2 is added here--></span>
                     </div>
                   </div>
                 </div>
@@ -240,6 +239,7 @@
           </div>
         </div>
       </section>
+      <!--Quote section end-->
     </main>
   </body>
 </html>
