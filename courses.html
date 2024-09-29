@@ -38,11 +38,22 @@
     <script>
       $(document).ready(function(){
         let numVideo = 0
-        function displayResult(string) {
+        /* initializing parameters */
+        let q_para = ""
+        let topics_para = ""
+        let sort_para = ""
+        /* display function */
+        function displayResult() {
           $.ajax({
           method : "GET",
-          url : `https://smileschool-api.hbtn.info/courses?q=${string}`,
+          url : `https://smileschool-api.hbtn.info/courses`,
           dataType : "json",
+          data: {
+            q : q_para,
+            topic : topics_para,
+            sort : sort_para
+
+          },
           success : function (data) {
             /* to empty the search result section */
             $("div.resultsSection").empty()
@@ -100,7 +111,17 @@
           displayResult("")
         }
         $("input").keyup(function(e){
-          displayResult(`${e.target.value}`)
+          q_para = e.target.value
+          displayResult()
+        })
+        $("a.topic-dropdown").on("click", function(){
+          topics_para = $(this).text()
+          displayResult()
+        })
+        $("a.sort-dropdown").on("click", function(){
+          sort_para = $(this).text()
+          sort_para = sort_para.replace(" ", "_")
+          displayResult()
         })
       }
     )
@@ -221,9 +242,9 @@
                   class="dropdown-menu mt-0"
                   aria-labelledby="dropdownMenuLink"
                 >
-                  <a class="dropdown-item" href="#">Novice</a>
-                  <a class="dropdown-item" href="#">Intermediate</a>
-                  <a class="dropdown-item" href="#">Expert</a>
+                  <a class="dropdown-item topic-dropdown" href="#">Novice</a>
+                  <a class="dropdown-item topic-dropdown" href="#">Intermediate</a>
+                  <a class="dropdown-item topic-dropdown" href="#">Expert</a>
                 </div>
               </div>
             </div>
@@ -248,9 +269,9 @@
                   class="dropdown-menu mt-0"
                   aria-labelledby="dropdownMenuLink"
                 >
-                  <a class="dropdown-item" href="#">Most Popular</a>
-                  <a class="dropdown-item" href="#">Most Recent</a>
-                  <a class="dropdown-item" href="#">Most Viewed</a>
+                  <a class="dropdown-item sort-dropdown" href="#">Most Popular</a>
+                  <a class="dropdown-item sort-dropdown" href="#">Most Recent</a>
+                  <a class="dropdown-item sort-dropdown" href="#">Most Viewed</a>
                 </div>
               </div>
             </div>
