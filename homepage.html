@@ -39,15 +39,16 @@
         $(".carousel-inner").hide()
         $.ajax({
           method:"GET",
-          url:"https://smileschool-api.hbtn.info/quotes",
+          url:"https://smileschool-api.hbtn.info/latest-videos",
           dataType:"json",
           success:function(data){
             $(".loader").hide()
             $.each(data, function(key,value){
-              $(`img.img${key + 1}`).attr("src", `${value["pic_url"]}`)
-              $(`p.para${key + 1}`).text(`${value["text"]}`)
-              $(`h4.name${key + 1}`).text(`${value["name"]}`)
-              $(`span.title${key + 1}`).text(`${value["title"]}`)
+              $(`.card${key + 1} .card-img-top`).attr("src",`${value["thumb_url"]}`)
+              $(`.card${key + 1} h5`).text(`${value["title"]}`)
+              $(`.card${key + 1} p`).text(`${value["sub-title"]}`)
+              $(`.card${key + 1} h6`).text(`${value["author"]}`)
+              $(`.card${key + 1} .rounded-circle`).attr("src",`${value["author_pic_url"]}`)
             })
             $(".carousel-inner").show()
           }})
