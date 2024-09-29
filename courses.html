@@ -110,14 +110,17 @@
         window.onload = function(){
           displayResult("")
         }
+        /*funtion for the keywords*/
         $("input").keyup(function(e){
           q_para = e.target.value
           displayResult()
         })
+        /*function for the topics dropdown menu*/
         $("a.topic-dropdown").on("click", function(){
           topics_para = $(this).text()
           displayResult()
         })
+        /*funtion for the sorts menu */
         $("a.sort-dropdown").on("click", function(){
           sort_para = $(this).text()
           sort_para = sort_para.replace(" ", "_")
