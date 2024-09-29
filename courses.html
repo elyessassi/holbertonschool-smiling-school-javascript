@@ -44,6 +44,9 @@
         let sort_para = ""
         /* display function */
         function displayResult() {
+          $(".loader").show()
+          $("div.resultsSection").hide()
+          $("span.video-count").hide()
           $.ajax({
           method : "GET",
           url : `https://smileschool-api.hbtn.info/courses`,
@@ -104,6 +107,9 @@
             })
             /* to update the videos number */
             $("span.video-count").text(`${numVideo} videos`)
+            $(".loader").hide()
+            $("div.resultsSection").show()
+            $("span.video-count").show()
           }
         })
         }
@@ -284,6 +290,7 @@
       <!--start of section-->
       <section class="section results">
         <div class="container">
+          <div class="loader" style="display: none;"></div>
           <div class="section-title">
             <span class="text-muted video-count"><!--num of videos here--></span>
           </div>
